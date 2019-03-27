@@ -1,0 +1,4 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Mon Mar 25 18:56:13 CST 2019
+@default-http\://maven.oschina.net/content/groups/public/.lastUpdated=1553511373778
+http\://maven.oschina.net/content/groups/public/.error=Could not transfer artifact org.hibernate\:hibernate-validator-parent\:pom\:5.3.5.Final from/to nexus-osc (http\://maven.oschina.net/content/groups/public/)\: maven.oschina.net

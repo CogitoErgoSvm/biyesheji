@@ -1,0 +1,6 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Mon Mar 25 19:04:06 CST 2019
+http\://repo2.maven.org/maven2/.error=Could not transfer artifact javax.validation\:validation-api\:jar\:1.1.0.Final from/to repo2 (http\://repo2.maven.org/maven2/)\: connect timed out
+@default-http\://repo2.maven.org/maven2/.lastUpdated=1553511837679
+@default-http\://maven.oschina.net/content/groups/public/.lastUpdated=1553511846803
+http\://maven.oschina.net/content/groups/public/.error=Could not transfer artifact javax.validation\:validation-api\:jar\:1.1.0.Final from/to nexus-osc (http\://maven.oschina.net/content/groups/public/)\: maven.oschina.net

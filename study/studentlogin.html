@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>学生登陆</title>
+		<script type="application/javascript" src="layui/layui.js"></script>
+		<link href="layui/css/layui.css">
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			html,body{
+				width: 100%;
+				height: 100%;
+			}
+			.login {
+				position: fixed;
+				width: 400px;
+				height: 400px;
+				border: 1px solid RGB(0, 0, 0, 0.1);
+				right: 120px;
+				top: 90px;
+				align: center;
+			}
+			.background {
+				position: absolute;
+				width: 100%;
+				height: 100%;				
+			}
+			.background img{
+				position: absolute;
+				width: 100%;
+			    margin: 0;
+			    top: -230px;
+			}
+			.main {
+				position: relative;
+				width: 100%;
+				height: 100%;				
+			}
+			
+			.input-border {
+				height: 42px;
+				width: 330px;
+				font-size: 15px;
+				color: RGB(0, 0, 0);
+				position: absolute;
+			}
+			
+			span {
+				position: absolute;
+				left: 120px;
+				top: 30px;
+				font-family: Microsoft Yahei;
+				font-size: 30px;
+				color: RGB(0, 0, 0, 0.5);
+			}
+			
+			#studyId {
+				top: 110px;
+				left: 30px;
+			}
+			
+			#pwdId {
+				top: 170px;
+				left: 30px;
+			}
+			
+			#bt-login {
+				left: 30px;
+				top: 230px;
+				background: RGB(191, 44, 36);
+				color: RGB(255, 255, 255);
+			}
+			
+			#bt-regist {
+				left: 30px;
+				top: 290px;
+				background: RGB(191, 44, 36);
+				color: RGB(255, 255, 255);
+			}
+			
+			#bt-exit {
+				left: 30px;
+				top: 350px;
+				width: 160px;
+				background: RGB(110, 110, 110);
+				color: RGB(255, 255, 255);
+			}
+			
+			#bt-retrieve {
+				right: 40px;
+				top: 350px;
+				width: 160px;
+				background: RGB(110, 110, 110);
+				color: RGB(255, 255, 255);
+			}
+			
+			.clearup {
+				clear: both;
+			}
+		</style>
+		<script type="text/javascript">
+			var url1 = "http://127.0.0.1:9999/";
+
+			function check() {
+
+				var username = document.getElementById("studyId").value;
+				if(username == null || username == "") {
+					window.alert("账号不为空");
+					return false;
+				}
+				var nameReg = /^[0-9a-zA-Z]*$/;
+				if(!nameReg.test(username)) {
+					window.alert("账号输入格式不正确");
+					return false;
+				}
+				var password = document.getElementById("pwdId").value;
+				if(password == null || password == "") {
+					window.alert("密码不为空")
+					return false;
+				}
+				var pwdReg = /^[0-9a-zA-Z]*$/;
+				if(!pwdReg.test(password)) {
+					window.alert("密码输入格式不正确");
+					return false;
+				}
+
+			}
+
+			function login() {
+				check();
+				var user_name = document.getElementById('studyId').value;
+				var pass_word = document.getElementById('pwdId').value;
+				console.log(user_name)
+				console.log(pass_word)
+
+				axios.post(url1 + '/Student/Studentlogin', {
+						"susername": user_name,
+						"spassword": pass_word,
+
+
+					})
+					.then(function(response) {
+						if(response.status == 200 ) {
+							console.log(response.data)
+							if(response.data.msg=="登陆失败！请检查用户名或者密码" && pass_word != null && pass_word != null){
+								alert(response.data.msg);
+							}else{
+								alert('登录成功！');
+								//页面跳转
+							}
+							
+						}
+					})
+					/*.catch(function(error) {
+						console.log(error);
+						alert('登录失败！请检查用户名或者密码！');
+					});*/
+
+			}
+		</script>
+	</head>
+
+	<body>
+		<div class="main">
+			<div class="background">			
+            <img src="img/login.jpg" />
+			<div class="login">
+				<span style="font-weight:bold">学生登陆</span>
+				<form action="LoginServlet" method="post" id="formId">
+					<table align="center">
+						<tr>
+							<td><input type="text" name="username" id="studyId" class="input-border" placeholder="账号" autocomplete="off"></td>
+						</tr>
+						<tr>
+							<td><input type="password" name="password" id="pwdId" class="input-border" placeholder="密码"></td>
+						</tr>
+						<tr>
+							<td><input type="button" value="登录" onclick="login()" id="bt-login" class="input-border"></td>
+							<td><input type="button" value="注册" onclick="window.location.href='regist.jsp'" id="bt-regist" class="input-border"></td>
+							<td><input type="button" value="返回" onclick="exit()" id="bt-exit" class="input-border"></td>
+							<td><input type="button" value="忘记密码" onclick="login()" id="bt-retrieve" class="input-border"></td>
+						</tr>
+					</table>
+				</form>
+			</div>
+			<div class="clearup"></div>
+			</div>
+		</div>
+	</body>
+	<script>
+		function exit(){
+			window.location = "login.html";
+		}
+	</script>
+
+</html>

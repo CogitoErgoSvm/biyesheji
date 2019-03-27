@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="www.hw.top.dao.ProjectDao" >
+  <resultMap id="BaseResultMap" type="www.hw.top.pojo.Project" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+
+    <result column="p_name" property="pName" jdbcType= "VARCHAR"/>
+    <result column="p_startTime" property="pStartTime" jdbcType= "VARCHAR"/>
+    <result column="p_endTime" property="pEndTime" jdbcType= "VARCHAR"/>
+    <result column="p_filePath" property="pFilePath" jdbcType= "VARCHAR"/>
+    <result column="p_state" property="pState" jdbcType= "VARCHAR"/>
+    <result column="p_headman" property="pHeadman" jdbcType= "VARCHAR"/>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    	id
+    	,p_name
+    	,p_startTime
+    	,p_endTime
+    	,p_filePath
+    	,p_state
+    	,p_headman
+  </sql>
+  <select id="getById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from project
+    where id = #{id,jdbcType=INTEGER};
+  </select>
+   <select id="getCount" resultType="java.lang.Integer" >
+    select count(id) from project;
+  </select>
+  
+  
+  
+  <delete id="delById" parameterType="java.lang.Integer" >
+    delete from project where id = #{id,jdbcType=INTEGER};
+  </delete>
+  
+  <insert id="save" parameterType="www.hw.top.pojo.Project" >
+    insert into project 
+    ( p_name,p_startTime,p_endTime,p_filePath,p_state,p_headman)
+    values
+    (#{pName,jdbcType=VARCHAR},#{pStartTime,jdbcType=VARCHAR},#{pEndTime,jdbcType=VARCHAR},#{pFilePath,jdbcType=VARCHAR},#{pState,jdbcType=VARCHAR},#{pHeadman,jdbcType=VARCHAR});
+  </insert>
+  
+  <update id="editById" parameterType="www.hw.top.pojo.Project" >
+    update project set  id = #{id,jdbcType=INTEGER}
+     ,p_name = #{pName,jdbcType=VARCHAR} ,p_startTime = #{pStartTime,jdbcType=VARCHAR} ,p_endTime = #{pEndTime,jdbcType=VARCHAR} ,p_filePath = #{pFilePath,jdbcType=VARCHAR} ,p_state = #{pState,jdbcType=VARCHAR} ,p_headman = #{pHeadman,jdbcType=VARCHAR}
+	where id = #{id,jdbcType=INTEGER};
+  </update>
+  
+   <select id="list" resultMap="BaseResultMap" parameterType="www.hw.top.pojo.Project" >
+    select 
+    <include refid="Base_Column_List" />
+    from project order by id desc;
+  </select>
+  
+   <select id="pagelist" resultMap="BaseResultMap">
+   select 
+    <include refid="Base_Column_List" />
+    from project  limit  #{pageNum},#{pageSize} order by id desc;;
+  </select>
+</mapper>

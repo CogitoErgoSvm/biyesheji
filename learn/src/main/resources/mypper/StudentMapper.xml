@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="www.hw.top.dao.StudentDao" >
+  <resultMap id="BaseResultMap" type="www.hw.top.pojo.Student" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+
+    <result column="s_name" property="sName" jdbcType= "VARCHAR"/>
+    <result column="s_username" property="sUsername" jdbcType= "VARCHAR"/>
+    <result column="s_password" property="sPassword" jdbcType= "VARCHAR"/>
+    <result column="s_number" property="sNumber" jdbcType= "VARCHAR"/>
+    <result column="s_sex" property="sSex" jdbcType= "VARCHAR"/>
+    <result column="s_telephone" property="sTelephone" jdbcType= "VARCHAR"/>
+    <result column="s_isTutor" property="sIsTutor" jdbcType= "VARCHAR"/>
+    <result column="s_isHeadman" property="sIsHeadman" jdbcType= "VARCHAR"/>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    	id
+    	,s_name
+    	,s_username
+    	,s_password
+    	,s_number
+    	,s_sex
+    	,s_telephone
+    	,s_isTutor
+    	,s_isHeadman
+  </sql>
+  <select id="getById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from student
+    where id = #{id,jdbcType=INTEGER};
+  </select>
+   <select id="getCount" resultType="java.lang.Integer" >
+    select count(id) from student;
+  </select>
+  
+  
+  
+  <delete id="delById" parameterType="java.lang.Integer" >
+    delete from student where id = #{id,jdbcType=INTEGER};
+  </delete>
+  
+  <insert id="save" parameterType="www.hw.top.pojo.Student" >
+    insert into student 
+    ( s_name,s_username,s_password,s_number,s_sex,s_telephone,s_isTutor,s_isHeadman)
+    values
+    (#{sName,jdbcType=VARCHAR},#{sUsername,jdbcType=VARCHAR},#{sPassword,jdbcType=VARCHAR},#{sNumber,jdbcType=VARCHAR},#{sSex,jdbcType=VARCHAR},#{sTelephone,jdbcType=VARCHAR},#{sIsTutor,jdbcType=VARCHAR},#{sIsHeadman,jdbcType=VARCHAR});
+  </insert>
+  
+  <update id="editById" parameterType="www.hw.top.pojo.Student" >
+    update student set  id = #{id,jdbcType=INTEGER}
+     ,s_name = #{sName,jdbcType=VARCHAR} ,s_username = #{sUsername,jdbcType=VARCHAR} ,s_password = #{sPassword,jdbcType=VARCHAR} ,s_number = #{sNumber,jdbcType=VARCHAR} ,s_sex = #{sSex,jdbcType=VARCHAR} ,s_telephone = #{sTelephone,jdbcType=VARCHAR} ,s_isTutor = #{sIsTutor,jdbcType=VARCHAR} ,s_isHeadman = #{sIsHeadman,jdbcType=VARCHAR}
+	where id = #{id,jdbcType=INTEGER};
+  </update>
+  
+   <select id="list" resultMap="BaseResultMap" parameterType="www.hw.top.pojo.Student" >
+    select 
+    <include refid="Base_Column_List" />
+    from student order by id desc;
+  </select>
+  
+   <!-- 根据user_name和password查询 --> 
+	 <select id="loginStudent" resultType="www.hw.top.pojo.Student">
+ 	 select   *   from  student where s_username = #{sUsername,jdbcType=VARCHAR} and s_password = #{sPassword,jdbcType=VARCHAR}; 
+ 	</select>
+  
+   <select id="pagelist" resultMap="BaseResultMap">
+   select 
+    <include refid="Base_Column_List" />
+    from student  limit  #{pageNum},#{pageSize} order by id desc;;
+  </select>
+</mapper>

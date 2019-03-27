@@ -1,0 +1,4 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Mon Mar 25 18:57:10 CST 2019
+@default-http\://maven.oschina.net/content/groups/public/.lastUpdated=1553511430618
+http\://maven.oschina.net/content/groups/public/.error=Could not transfer artifact org.javassist\:javassist\:pom\:3.21.0-GA from/to nexus-osc (http\://maven.oschina.net/content/groups/public/)\: maven.oschina.net

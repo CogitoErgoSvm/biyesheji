@@ -1,0 +1,4 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Mon Mar 25 18:54:58 CST 2019
+@default-http\://maven.oschina.net/content/groups/public/.lastUpdated=1553511298332
+http\://maven.oschina.net/content/groups/public/.error=Could not transfer artifact org.codehaus.plexus\:plexus-compilers\:pom\:2.2 from/to nexus-osc (http\://maven.oschina.net/content/groups/public/)\: maven.oschina.net

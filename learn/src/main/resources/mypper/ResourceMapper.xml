@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="www.hw.top.dao.ResourceDao" >
+  <resultMap id="BaseResultMap" type="www.hw.top.pojo.Resource" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+
+    <result column="r_name" property="rName" jdbcType= "VARCHAR"/>
+    <result column="r_type" property="rType" jdbcType= "VARCHAR"/>
+    <result column="r_filePath" property="rFilePath" jdbcType= "VARCHAR"/>
+    <result column="r_sendTime" property="rSendTime" jdbcType= "DATE"/>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    	id
+    	,r_name
+    	,r_type
+    	,r_filePath
+    	,r_sendTime
+  </sql>
+  <select id="getById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from resource
+    where id = #{id,jdbcType=INTEGER};
+  </select>
+   <select id="getCount" resultType="java.lang.Integer" >
+    select count(id) from resource;
+  </select>
+  
+  
+  
+  <delete id="delById" parameterType="java.lang.Integer" >
+    delete from resource where id = #{id,jdbcType=INTEGER};
+  </delete>
+  
+  <insert id="save" parameterType="www.hw.top.pojo.Resource" >
+    insert into resource 
+    ( r_name,r_type,r_filePath,r_sendTime)
+    values
+    (#{rName,jdbcType=VARCHAR},#{rType,jdbcType=VARCHAR},#{rFilePath,jdbcType=VARCHAR},#{rSendTime,jdbcType=DATE});
+  </insert>
+  
+  <update id="editById" parameterType="www.hw.top.pojo.Resource" >
+    update resource set  id = #{id,jdbcType=INTEGER}
+     ,r_name = #{rName,jdbcType=VARCHAR} ,r_type = #{rType,jdbcType=VARCHAR} ,r_filePath = #{rFilePath,jdbcType=VARCHAR} ,r_sendTime = #{rSendTime,jdbcType=DATE}
+	where id = #{id,jdbcType=INTEGER};
+  </update>
+  
+   <select id="list" resultMap="BaseResultMap" parameterType="www.hw.top.pojo.Resource" >
+    select 
+    <include refid="Base_Column_List" />
+    from resource order by id desc;
+  </select>
+  
+   <select id="pagelist" resultMap="BaseResultMap">
+   select 
+    <include refid="Base_Column_List" />
+    from resource  limit  #{pageNum},#{pageSize} order by id desc;;
+  </select>
+</mapper>

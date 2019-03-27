@@ -1,0 +1,4 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Mon Mar 25 18:55:46 CST 2019
+@default-http\://maven.oschina.net/content/groups/public/.lastUpdated=1553511346000
+http\://maven.oschina.net/content/groups/public/.error=Could not transfer artifact ch.qos.logback\:logback-parent\:pom\:1.1.11 from/to nexus-osc (http\://maven.oschina.net/content/groups/public/)\: maven.oschina.net

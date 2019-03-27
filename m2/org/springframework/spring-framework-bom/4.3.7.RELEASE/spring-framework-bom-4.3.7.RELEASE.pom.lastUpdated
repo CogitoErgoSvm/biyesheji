@@ -1,0 +1,4 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Mon Mar 25 18:56:45 CST 2019
+@default-http\://maven.oschina.net/content/groups/public/.lastUpdated=1553511405083
+http\://maven.oschina.net/content/groups/public/.error=Could not transfer artifact org.springframework\:spring-framework-bom\:pom\:4.3.7.RELEASE from/to nexus-osc (http\://maven.oschina.net/content/groups/public/)\: maven.oschina.net

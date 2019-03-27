@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="www.hw.top.dao.CurriculumDao" >
+  <resultMap id="BaseResultMap" type="www.hw.top.pojo.Curriculum" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+
+    <result column="cc_name" property="ccName" jdbcType= "VARCHAR"/>
+    <result column="cc_teacherID" property="ccTeacherID" jdbcType= "INTEGER"/>
+    <result column="cc_classID" property="ccClassID" jdbcType= "INTEGER"/>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    	id
+    	,cc_name
+    	,cc_teacherID
+    	,cc_classID
+  </sql>
+  <select id="getById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from curriculum
+    where id = #{id,jdbcType=INTEGER};
+  </select>
+   <select id="getCount" resultType="java.lang.Integer" >
+    select count(id) from curriculum;
+  </select>
+  
+  
+  
+  <delete id="delById" parameterType="java.lang.Integer" >
+    delete from curriculum where id = #{id,jdbcType=INTEGER};
+  </delete>
+  
+  <insert id="save" parameterType="www.hw.top.pojo.Curriculum" >
+    insert into curriculum 
+    ( cc_name,cc_teacherID,cc_classID)
+    values
+    (#{ccName,jdbcType=VARCHAR},#{ccTeacherID,jdbcType=INTEGER},#{ccClassID,jdbcType=INTEGER});
+  </insert>
+  
+ 
+  <update id="editById" parameterType="www.hw.top.pojo.Curriculum" >
+    update curriculum set  id = #{id,jdbcType=INTEGER}
+     ,cc_name = #{ccName,jdbcType=VARCHAR} ,cc_teacherID = #{ccTeacherID,jdbcType=INTEGER} ,cc_classID = #{ccClassID,jdbcType=INTEGER}
+	where id = #{id,jdbcType=INTEGER};
+  </update>
+  
+   <select id="list" resultMap="BaseResultMap" parameterType="www.hw.top.pojo.Curriculum" >
+    select 
+    <include refid="Base_Column_List" />
+    from curriculum order by id desc;
+  </select>
+  
+   <select id="pagelist" resultMap="BaseResultMap">
+   select 
+    <include refid="Base_Column_List" />
+    from curriculum  limit  #{pageNum},#{pageSize} order by id desc;;
+  </select>
+</mapper>

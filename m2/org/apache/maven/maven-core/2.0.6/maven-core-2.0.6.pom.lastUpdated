@@ -1,0 +1,4 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Mon Mar 25 18:53:35 CST 2019
+@default-http\://maven.oschina.net/content/groups/public/.lastUpdated=1553511215041
+http\://maven.oschina.net/content/groups/public/.error=Could not transfer artifact org.apache.maven\:maven-core\:pom\:2.0.6 from/to nexus-osc (http\://maven.oschina.net/content/groups/public/)\: maven.oschina.net

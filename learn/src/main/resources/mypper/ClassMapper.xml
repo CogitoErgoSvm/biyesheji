@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="www.hw.top.dao.ClassDao" >
+  <resultMap id="BaseResultMap" type="www.hw.top.pojo.Class" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+
+    <result column="c_name" property="cName" jdbcType= "VARCHAR"/>
+    <result column="c_peopel" property="cPeopel" jdbcType= "VARCHAR"/>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    	id
+    	,c_name
+    	,c_peopel
+  </sql>
+  <select id="getById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from class
+    where id = #{id,jdbcType=INTEGER};
+  </select>
+   <select id="getCount" resultType="java.lang.Integer" >
+    select count(id) from class;
+  </select>
+  
+  
+  
+  <delete id="delById" parameterType="java.lang.Integer" >
+    delete from class where id = #{id,jdbcType=INTEGER};
+  </delete>
+  
+  <insert id="save" parameterType="www.hw.top.pojo.Class" >
+    insert into class 
+    ( c_name,c_peopel)
+    values
+    (#{cName,jdbcType=VARCHAR},#{cPeopel,jdbcType=VARCHAR});
+  </insert>
+  
+  <update id="editById" parameterType="www.hw.top.pojo.Class" >
+    update class set  id = #{id,jdbcType=INTEGER}
+     ,c_name = #{cName,jdbcType=VARCHAR} ,c_peopel = #{cPeopel,jdbcType=VARCHAR}
+	where id = #{id,jdbcType=INTEGER};
+  </update>
+  
+   <select id="list" resultMap="BaseResultMap" parameterType="www.hw.top.pojo.Class" >
+    select 
+    <include refid="Base_Column_List" />
+    from class order by id desc;
+  </select>
+  
+   <select id="pagelist" resultMap="BaseResultMap">
+   select 
+    <include refid="Base_Column_List" />
+    from class  limit  #{pageNum},#{pageSize} order by id desc;;
+  </select>
+</mapper>
